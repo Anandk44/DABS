@@ -20,12 +20,17 @@ resources:
           default: ${var.catalog}
         - name: schema
           default: ${var.schema}
-
       tasks:
         - task_key: notebook_task
           notebook_task:
             notebook_path: ../src/sample_notebook.ipynb
+        - task_key: notebook_task2
+          depends_on:
+            - task_key: notebook_task
+          notebook_task:
+            notebook_path: ../src/sample_notebook_2.ipynb
 
+      
       environments:
         - environment_key: default
           spec:
